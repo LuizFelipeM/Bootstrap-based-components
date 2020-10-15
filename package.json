@@ -1,9 +1,11 @@
 {
-  "name": "@luizfelipem/bootstrap-based-components",
-  "version": "1.0.0",
+  "name": "bootstrap-based-components",
+  "version": "1.0.1",
   "description": "A Bootstrap based package with React components",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "tsc && copyfiles --up 1 src/**/*.s{a,c}ss dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +23,10 @@
     "components",
     "react components"
   ],
-  "author": "Luiz Felipe Moura, Lucas Daniel, Pedro Ricciardi",
+  "author": {
+    "name": "Luiz Felipe Moura",
+    "email": "muniz.mourafelipe@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/LuizFelipeM/Bootstrap-based-components/issues"
@@ -53,14 +58,24 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-vis": "^1.11.3",
+    "@types/webpack": "^4.41.22",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
+    "copyfiles": "^2.4.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
-    "typescript": "~4.0.2"
+    "sass-loader": "^10.0.3",
+    "ts-loader": "^8.0.5",
+    "typescript": "~4.0.2",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "webpack-dev-server": "^3.1.14"
   }
 }

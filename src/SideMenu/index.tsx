@@ -2,18 +2,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { Nav } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
-import RoutesConfig from '../../@types/RoutesConfig'
+import RoutesConfig from '../@types/RoutesConfig'
 
-import { ReactComponent as Logo } from '../../assets/imgs/logo.svg'
 import './style.scss'
 
 interface SideMenuProps {
+  Logo: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined }>
   config: RoutesConfig
 }
 
 const { Item } = Nav
 
-const SideMenu: React.FC<SideMenuProps> = ({ config }) => {
+const SideMenu: React.FC<SideMenuProps> = ({ config, Logo }) => {
   const location = useLocation()
   const configs = Object.entries(config)
 

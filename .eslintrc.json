@@ -41,6 +41,7 @@
     "semi": ["error", "never"],
     "linebreak-style": "off"
   },
+  "ignorePatterns": [ "**/dist", "**/build" ],
   "settings": {
     "import/resolver": {
       "node": {
