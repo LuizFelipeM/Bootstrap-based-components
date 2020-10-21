@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
-import AppCard, { AppCardProps } from '../StandardCard'
+import StandardCard, { StandardCardProps } from '../StandardCard'
 
 import './style.scss'
 
@@ -9,20 +9,22 @@ interface ColumnConfig {
   name: string
 }
 
-interface TableCardProps {
-  header?: string
+interface TableProps {
   columnConfig: ColumnConfig[]
   dataSource: any[]
 }
 
-const DataGridCard: React.FC<TableCardProps & AppCardProps> = ({
-  header, img, title, footer, columnConfig, dataSource
+type TableCardProps = TableProps & StandardCardProps
+
+const DataGridCard: React.FC<TableCardProps> = ({
+  header, img, title, footer, columnConfig, dataSource, className: clasName
 }) => (
-  <AppCard
+  <StandardCard
     header={header}
     footer={footer}
     title={title}
     img={img}
+    className={`data-grid-card ${clasName}`}
   >
     <Table striped borderless hover>
       <thead>
@@ -45,7 +47,7 @@ const DataGridCard: React.FC<TableCardProps & AppCardProps> = ({
         ))}
       </tbody>
     </Table>
-  </AppCard>
+  </StandardCard>
 )
 
 export default DataGridCard

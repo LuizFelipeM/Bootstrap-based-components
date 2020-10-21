@@ -5,11 +5,16 @@ import RoutesConfig from '../@types/RoutesConfig'
 
 import './style.scss'
 
-const DisplayContainer: React.FC<{ config: RoutesConfig }> = ({ config }) => {
+interface DisplayContainerProps {
+  config: RoutesConfig
+  clasName?: string
+}
+
+const DisplayContainer: React.FC<DisplayContainerProps> = ({ config, clasName }) => {
   const configs = Object.entries(config)
 
   return (
-    <Container className="display-container-wrapper" fluid>
+    <Container className={`display-container ${clasName}`} fluid>
       <Switch>
         {configs.map((route) => {
           const name = route[0]

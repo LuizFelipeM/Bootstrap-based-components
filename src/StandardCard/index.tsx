@@ -9,25 +9,26 @@ const {
 
 type CommonTypes = string | number | React.ReactNode
 
-export interface AppCardProps {
+export interface StandardCardProps {
   header?: CommonTypes
   footer?: CommonTypes
   title?: CommonTypes
   img?: string
+  className?: string
 }
 
-const AppCard: React.FC<AppCardProps> = ({
-  header, img, title, footer, children
+const StandardCard: React.FC<StandardCardProps> = ({
+  header, img, title, footer, children, className
 }) => (
-  <Card className="app-card">
-    {header && <Header className="app-card-header" as="h4">{header}</Header>}
-    <Body className="app-card-body">
-      {img && <Img className="app-card-img" variant="top" src={img} />}
-      {title && <Title className="app-card-title">{title}</Title>}
+  <Card className={`standard-card ${className}`}>
+    {header && <Header className="standard-card-header" as="h4">{header}</Header>}
+    <Body className="standard-card-body">
+      {img && <Img className="standard-card-img" variant="top" src={img} />}
+      {title && <Title className="standard-card-title">{title}</Title>}
       {children}
-      {footer && <Footer className="app-card-footer">{footer}</Footer>}
+      {footer && <Footer className="standard-card-footer">{footer}</Footer>}
     </Body>
   </Card>
 )
 
-export default AppCard
+export default StandardCard

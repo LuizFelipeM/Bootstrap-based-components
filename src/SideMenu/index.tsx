@@ -7,21 +7,21 @@ import RoutesConfig from '../@types/RoutesConfig'
 import './style.scss'
 
 interface SideMenuProps {
-  Logo: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined }>
   config: RoutesConfig
+  clasName?: string
 }
 
 const { Item } = Nav
 
-const SideMenu: React.FC<SideMenuProps> = ({ config, Logo }) => {
+const SideMenu: React.FC<SideMenuProps> = ({ config, clasName, children }) => {
   const location = useLocation()
   const configs = Object.entries(config)
 
   return (
-    <Nav className="flex-column side-menu-wrapper">
+    <Nav className={`flex-column side-menu ${clasName}`}>
       <Item className="side-menu-item logo">
         <Link to="/">
-          <Logo /> Logan
+          {children}
         </Link>
       </Item>
       {configs
