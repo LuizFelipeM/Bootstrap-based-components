@@ -14,7 +14,7 @@ const DisplayContainer: React.FC<DisplayContainerProps> = ({ config, clasName })
   const configs = Object.entries(config)
 
   return (
-    <Container className={`display-container ${clasName}`} fluid>
+    <Container className={`display-container ${clasName ?? ''}`} fluid>
       <Switch>
         {configs.map((route) => {
           const name = route[0]

@@ -20,7 +20,7 @@ export interface StandardCardProps {
 const StandardCard: React.FC<StandardCardProps> = ({
   header, img, title, footer, children, className
 }) => (
-  <Card className={`standard-card ${className}`}>
+  <Card className={`standard-card ${className ?? ''}`}>
     {header && <Header className="standard-card-header" as="h4">{header}</Header>}
     <Body className="standard-card-body">
       {img && <Img className="standard-card-img" variant="top" src={img} />}

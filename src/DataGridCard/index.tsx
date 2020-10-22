@@ -17,14 +17,14 @@ interface TableProps {
 type TableCardProps = TableProps & StandardCardProps
 
 const DataGridCard: React.FC<TableCardProps> = ({
-  header, img, title, footer, columnConfig, dataSource, className: clasName
+  header, img, title, footer, columnConfig, dataSource, className
 }) => (
   <StandardCard
     header={header}
     footer={footer}
     title={title}
     img={img}
-    className={`data-grid-card ${clasName}`}
+    className={`data-grid-card ${className ?? ''}`}
   >
     <Table striped borderless hover>
       <thead>

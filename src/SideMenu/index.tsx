@@ -18,7 +18,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ config, clasName, children }) => {
   const configs = Object.entries(config)
 
   return (
-    <Nav className={`flex-column side-menu ${clasName}`}>
+    <Nav className={`flex-column side-menu ${clasName ?? ''}`}>
       <Item className="side-menu-item logo">
         <Link to="/">
           {children}
