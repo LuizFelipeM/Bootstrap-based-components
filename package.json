@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-based-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Bootstrap based package with React components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
