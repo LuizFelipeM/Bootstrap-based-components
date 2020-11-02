@@ -34,14 +34,16 @@
     ],
     "@typescript-eslint/no-use-before-define": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/require-default-props": "off",
     "react/no-array-index-key": "off",
     "react/prop-types": "off",
+    "no-unused-vars": "off",
     "no-use-before-define": "off",
     "comma-dangle": ["error", "never"],
     "semi": ["error", "never"],
     "linebreak-style": "off"
   },
-  "ignorePatterns": [ "**/dist", "**/build" ],
+  "ignorePatterns": [ "**/dist", "**/build", "**/@types" ],
   "settings": {
     "import/resolver": {
       "node": {

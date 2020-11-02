@@ -1,49 +1,61 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Nav } from 'react-bootstrap'
-import { Link, useLocation } from 'react-router-dom'
-import RoutesConfig from '../@types/RoutesConfig'
+import { Link, useLocation, useRouteMatch } from 'react-router-dom'
+import RoutesConfig, { RouteProp } from '../@types/RoutesConfig'
 
 import './style.scss'
 
-interface SideMenuProps {
-  config: RoutesConfig
-  clasName?: string
+interface SideMenuProps<T extends string | number | symbol> {
+  routeConfig: RoutesConfig<T>
+  className?: string
+  children?: ReactNode
 }
 
 const { Item } = Nav
 
-const SideMenu: React.FC<SideMenuProps> = ({ config, clasName, children }) => {
-  const location = useLocation()
-  const configs = Object.entries(config)
+function SideMenu<T extends string | number | symbol>({
+  routeConfig,
+  className,
+  children
+}: SideMenuProps<T>) {
+  const { pathname } = useLocation()
+  const configs = Object.entries<RouteProp>(routeConfig)
 
-  return (
-    <Nav className={`flex-column side-menu ${clasName ?? ''}`}>
-      <Item className="side-menu-item logo">
-        <Link to="/">
-          {children}
-        </Link>
-      </Item>
-      {configs
-        .filter((route) => !route[1].hideOnSideMenu)
-        .map((route) => {
-          const { path, name, icon } = route[1]
-          const isSelected = location.pathname === `/${path}`
+  const showMenu = configs
+    .filter(([_, { hideSideMenu }]) => hideSideMenu)
+    .find(([_, { path }]) => pathname.match(path.startsWith('/') ? path : `/${path}`))
 
-          return (
-            <Item
-              key={route[0]}
-              className={`side-menu-item ${route[0]} ${isSelected ? 'selected' : ''}`}
-            >
-              <Link className="side-menu-link" to={path}>
-                {icon && <FontAwesomeIcon className="side-menu-icon" icon={icon} size="lg" />}
-                <span className="side-menu-name">{name}</span>
-              </Link>
-              {isSelected && <span className="side-menu-selectedbar" />}
-            </Item>
-          )
-        })}
-    </Nav>
+  return (!showMenu
+    ? (
+      <Nav className={`flex-column side-menu ${className ?? ''}`}>
+        <Item className="side-menu-item logo">
+          <Link to="/">
+            {children}
+          </Link>
+        </Item>
+        {configs
+          .filter((config) => !config[1].hideOnSideMenu)
+          .map((config) => {
+            const { path, name, icon } = config[1]
+            const isSelected = pathname.includes(path)
+            const routePath = path.startsWith('/') ? path : `/${path}`
+
+            return (
+              <Item
+                key={config[0]}
+                className={`side-menu-item ${config[0]} ${isSelected ? 'selected' : ''}`}
+              >
+                <Link className="side-menu-link" to={routePath}>
+                  {icon && <FontAwesomeIcon className="side-menu-icon" icon={icon} size="lg" />}
+                  <span className="side-menu-name">{name}</span>
+                </Link>
+                {isSelected && <span className="side-menu-selectedbar" />}
+              </Item>
+            )
+          })}
+      </Nav>
+    ) : null
   )
 }
 

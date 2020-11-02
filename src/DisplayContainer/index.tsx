@@ -1,20 +1,23 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { Route, Switch } from 'react-router-dom'
-import RoutesConfig from '../@types/RoutesConfig'
+import RoutesConfig, { RouteProp } from '../@types/RoutesConfig'
 
 import './style.scss'
 
-interface DisplayContainerProps {
-  config: RoutesConfig
-  clasName?: string
+interface DisplayContainerProps<T extends string | number | symbol> {
+  config: RoutesConfig<T>
+  className?: string
 }
 
-const DisplayContainer: React.FC<DisplayContainerProps> = ({ config, clasName }) => {
-  const configs = Object.entries(config)
+function DisplayContainer<T extends string | number | symbol>({
+  config,
+  className
+}: DisplayContainerProps<T>) {
+  const configs = Object.entries<RouteProp>(config)
 
   return (
-    <Container className={`display-container ${clasName ?? ''}`} fluid>
+    <Container className={`display-container ${className ?? ''}`} fluid>
       <Switch>
         {configs.map((route) => {
           const name = route[0]
@@ -23,7 +26,7 @@ const DisplayContainer: React.FC<DisplayContainerProps> = ({ config, clasName })
           return (
             <Route
               key={name}
-              path={`/${path}`}
+              path={path.startsWith('/') ? path : `/${path}`}
               component={page}
               exact
             />
