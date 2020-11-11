@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
-import StandardCard, { StandardCardProps } from '../StandardCard'
-
+import { StandardCard } from '..'
+import { StandardCardProps } from '../StandardCard'
 import './style.scss'
 
 interface ColumnConfig<T> {
@@ -12,13 +12,14 @@ interface ColumnConfig<T> {
 interface TableProps<T> {
   columnConfig: ColumnConfig<T>[]
   dataSource: T[]
+  children?: React.ReactNode
   onClick?: (event: React.MouseEvent<HTMLTableRowElement, MouseEvent>, data: T) => void
 }
 
 type TableCardProps<T> = TableProps<T> & StandardCardProps
 
 function DataGridCard<T>({
-  header, img, title, footer, columnConfig, dataSource, className, onClick
+  header, img, title, footer, columnConfig, dataSource, className, children, onClick
 }: TableCardProps<T>) {
   return (
     <StandardCard
@@ -28,6 +29,7 @@ function DataGridCard<T>({
       img={img}
       className={`data-grid-card ${className ?? ''}`}
     >
+      {children }
       <Table striped borderless hover>
         <thead>
           <tr>
