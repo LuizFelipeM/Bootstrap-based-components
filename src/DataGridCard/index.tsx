@@ -29,7 +29,7 @@ function DataGridCard<T>({
       img={img}
       className={`data-grid-card ${className ?? ''}`}
     >
-      {children }
+      {children}
       <Table striped borderless hover>
         <thead>
           <tr>
