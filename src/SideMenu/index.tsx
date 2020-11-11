@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { ReactNode } from 'react'
 import { Nav } from 'react-bootstrap'
-import { Link, useLocation, useRouteMatch } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import RoutesConfig, { RouteProp } from '../@types/RoutesConfig'
 
 import './style.scss'
